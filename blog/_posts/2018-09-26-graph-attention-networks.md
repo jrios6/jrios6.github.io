@@ -31,22 +31,21 @@ $$
 $$
 where $$\sigma$$ is the activation function.
 
-- Multi-head attention is used to stabilize the learning process of self-attention, by concatenating the output of K independent attention mechanisms:
+- Multi-head attention is used to stabilize the learning process of self-attention, by **concatenating** the output of **K independent attention** mechanisms:
 $$
 \vec{h_i'} = ||_{k=1}^K \sigma(\sum_{j \epsilon N_i} \alpha_{i,j}^k W^k\vec{h_j})
 $$
 where $$\alpha_{i,j}^k$$ is the normalized attention coefficient computed with the $$k$$-th attention mechanism $$a^k$$ and $$W^k$$ is the corresponding weight matrix. Hence, the output $$\vec{h_i}$$ will have $$KF'$$ instead of $$F'$$ features.
 
-- For the final (prediction) layer of the network, averaging is first applied to the sum of the output from each attention head, before the final non-linearity is applied:
+- For the final (prediction) layer of the network, **averaging** is first applied to the sum of the output from each attention head, before the final non-linearity is applied:
 $$
 \vec{h_i'} = \sigma(\frac{1}{K} \sum_{k=1}^K \sum_{j \epsilon N_i} \alpha_{i,j}^k W^k\vec{h_j})
 $$
 
-- During training, dropout is applied to layer's input and normalized attention coefficients, $$\alpha_{ij}$$. Hence, each node is exposed to a stochastically sampled neighbourhood.
+- During training, **dropout** is applied to layer's **input** and normalized attention coefficients, **$$\alpha_{ij}$$**. Hence, each node is exposed to a stochastically sampled neighbourhood.
 
 ### Advantages of GATs
 - A single GAT attention head with $$F'$$ features can be computed in $$O(\text{\textbar}V\text{\textbar}FF' + \text{\textbar}E\text{\textbar}F')$$ , on par with Graph Convolutional Networks (GCNs) (Kipf & Welling, 2017)
-
 
 - Unlike GCNs, GATs allows for (implicit) assigning of different importances to nodes in the same neighbourhood. Analyzing the weights might lead to benefits in interpretability.
 
@@ -57,11 +56,11 @@ $$
 - GAT can be used for both inductive (evaluated on graphs completely unseen during training) and transductive learning.
 
 ### Experimental Setup
-- Transductive Learning (Cora & Citeseer): Two-layer GAT model, with $$K$$ = 8 attention heads and $$F'$$ = 8 features in first layer, followed by an exponential linear unit (ELU). Second layer is used for classfication with $$C$$ output features (# of classes), $$K$$ = 1, followed by a softmax activation. $$L_2$$ regularization is set to 0.0005. Dropout with $$p$$ = 0.6 is applied to both layers' inputs and normalized attention coefficients, $$\alpha_{ij}$$.  
+- Transductive Learning (**Cora & Citeseer**): Two-layer GAT model, with $$K$$ = 8 attention heads and $$F'$$ = 8 features in first layer, followed by an exponential linear unit (ELU). Second layer is used for classfication with $$C$$ output features (# of classes), $$K$$ = 1, followed by a softmax activation. $$L_2$$ regularization is set to 0.0005. Dropout with $$p$$ = 0.6 is applied to both layers' inputs and normalized attention coefficients, $$\alpha_{ij}$$.  
 
-- Transductive Learning (Pubmed): Two-layer GAT model, with $$K$$ = 8 and $$F'$$ = 8 in first layer, followed by ELU nonlinearity. Second layer is used for classfication with $$C$$ output features and $$K$$ = 8, followed by a softmax activation. $$L_2$$ regularization is set to 0.001 and dropout is set to $$p$$ = 0.6.  
+- Transductive Learning (**Pubmed**): Two-layer GAT model, with $$K$$ = 8 and $$F'$$ = 8 in first layer, followed by ELU nonlinearity. Second layer is used for classfication with $$C$$ output features and $$K$$ = 8, followed by a softmax activation. $$L_2$$ regularization is set to 0.001 and dropout is set to $$p$$ = 0.6.  
 
-- Inductive Learning (PPI): Three-layer GAT model, with $$K$$ = 4 and $$F'$$ = 256 features on first two layers, followed by ELU nonlinearity. Final layer has $$K$$ = 6 and $$C$$ = 121, followed by a logistic sigmoid activation. No regularization is used as the training set is sufficiently large. Skip connections are added across the intermediate attentional layer.
+- Inductive Learning (**PPI**): Three-layer GAT model, with $$K$$ = 4 and $$F'$$ = 256 features on first two layers, followed by ELU nonlinearity. Final layer has $$K$$ = 6 and $$C$$ = 121, followed by a logistic sigmoid activation. No regularization is used as the training set is sufficiently large. Skip connections are added across the intermediate attentional layer.
 
 ### Results
 - GATs outperformed GCNs on Cora and Citeseer by 1.5% and 1.6% respectively, and matching GCNs performance on the Pubmed dataset.
@@ -70,6 +69,6 @@ $$
 
 
 ### Questions
-Q: How would changing the neighbourhood size affect results? How about using different neighbourhood size in different layers?
+**Q**: How would changing the neighbourhood size affect results? How about using different neighbourhood size in different layers?
 
-Q: In the context of semi-supervised clustering, if signal embedding is used as input $$h_i$$, and majority of the unlabelled nodes sharing the same $$h_i$$, how can the attention co-efficient be effective computed?
+**Q**: In the context of semi-supervised clustering, if signal embedding is used as input $$h_i$$, and majority of the unlabelled nodes sharing the same $$h_i$$, how can the attention co-efficient be effective computed?
