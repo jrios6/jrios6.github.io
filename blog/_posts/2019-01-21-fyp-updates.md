@@ -5,11 +5,13 @@ description: >
 categories: fyp
 ---
 
+# FYP Project Updates
+
 ### Update #5 (26/11/18)
 - Experimented RGGCN with a color classification dataset (Google-512) where the task is to classify an input image among 11 colors.
 - Chose this task as CNN and transfer learning does not work as well as other non-deep learning methods like LDA and KNN.
 - Tested RGGCN with input nearest neighbour graph for each pixel based on similarity to neighbouring pixels, and added fully connected layer after to output 11 class predictions.
-- Test performance was below using a standard MLP, transfer learning with inception and a standard ConvNet
+- Test performance was below that of a standard MLP, transfer learning with inception and a standard ConvNet
 
 ### Update #4 (12/11/18)
 - Replaced final output attention layer on pyGAT with fully connected, similar to Residual Gated Graph ConvNet
