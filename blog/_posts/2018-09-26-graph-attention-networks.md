@@ -63,10 +63,10 @@ $$
 - Inductive Learning (**PPI**): Three-layer GAT model, with $$K$$ = 4 and $$F'$$ = 256 features on first two layers, followed by ELU nonlinearity. Final layer has $$K$$ = 6 and $$C$$ = 121, followed by a logistic sigmoid activation. No regularization is used as the training set is sufficiently large. Skip connections are added across the intermediate attentional layer.
 
 ### Results
-- GATs outperformed GCNs on Cora and Citeseer by 1.5% and 1.6% respectively, and matching GCNs performance on the Pubmed dataset.
+- GATs outperformed GCNs on Cora and Citeseer by **1.5%** and **1.6%** respectively, and matching GCNs performance on the Pubmed dataset.
 
-- GATs outperformed GraphSAGE by 20.5% on the PPI dataset.
-
+- GATs outperformed GraphSAGE by **20.5%** on the PPI dataset.
+- 
 
 ### Questions
 **Q**: How would changing the neighbourhood size affect results? How about using different neighbourhood size in different layers?

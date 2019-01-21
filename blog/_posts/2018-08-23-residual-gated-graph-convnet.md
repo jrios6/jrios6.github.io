@@ -26,6 +26,12 @@ $$
 \end{gathered}
 $$
 
+- In a regular ConvNet, h_ij_l is obtained by applying a non-linear transformation to feature vectors for all pixels in a neighbourhood of pixel_ij, given by euclidean distance from vertex (i, j).
+
+- Thus, the most generic version of a feature vector h_i at vertex i for a graph ConvNet is by applying a non-linear transformation to neighbouring vertices of j->i.
+
+
+
 - Authors proposed a **multi-layer graph ConvNet with edge gating and residuality** for variable graphs, based on the vanilla Graph ConvNet architecutre of Sukhbaatar et al. (2016), Eq.(7), and the edge gating mechanism of Marcheggiani & Titov (2017).
 
 - Authors used an **embedding layer** with 50 output dimension for each of the 10 possible vertex signals.
@@ -36,12 +42,10 @@ $$
 
 - Dropout can be applied both on edges and nodes as regularization.
 
-
 ### Results
 - Results show that ConvNets are **3-17%** more accurate and **1.5-4x** faster than Graph RNNs, and 36% more accurate than non-learning techniques.
 
-- Gated edges and residuality provide a 10% gain in performance among ConvNet architectures.  
-
+- Gated edges and residuality provide a **10%** gain in performance among ConvNet. architectures.  
 
 ### Questions:
   **Q:** Why is the signal for each node generated randomly? How can this be helpful for the GNN to classify the community of each node?  
