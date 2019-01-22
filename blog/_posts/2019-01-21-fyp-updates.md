@@ -1,11 +1,16 @@
 ---
 layout: post
 title:  "FYP Project Updates"
-description: >
+description: > Semi-Supervised Clustering Project Progress Updates
 categories: fyp
 ---
 
 # FYP Project Updates
+
+### Update #6 (31/01/19)
+- Uploaded project notebooks to [Github repository](https://github.com/jrios6/graph-neural-networks)
+- Improved performance of RGGCN on Cora Dataset by using Adjacency + Identity Matrix for input
+- Refactored RGGCN on Cora for faster training speed, and fixed bug in accuracy computation
 
 ### Update #5 (26/11/18)
 - Experimented RGGCN with a color classification dataset (Google-512) where the task is to classify an input image among 11 colors.
@@ -15,7 +20,7 @@ categories: fyp
 
 ### Update #4 (12/11/18)
 - Replaced final output attention layer on pyGAT with fully connected, similar to Residual Gated Graph ConvNet
-- Improved performance for multi-layer attention, achieving 71% best test accuracy with 7 layers and 8 attention heads
+- Improved performance for multi-layer attention, achieving 71% best test accuracy with 7 layers and 8 attention heads for Semi-Supervised Clustering
 
 ### Update #3 (15/10/18)
 - Ran pyGAT on Semi-Supervised Clustering with Stochastic Block Model Dataset, achieving 62% best test accuracy
