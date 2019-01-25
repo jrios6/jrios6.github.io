@@ -11,6 +11,25 @@ categories: fyp
 - Uploaded project notebooks to [Github repository](https://github.com/jrios6/graph-neural-networks)
 - Improved performance of RGGCN on Cora Dataset by using Adjacency + Identity Matrix for input
 - Refactored RGGCN on Cora for faster training speed, and fixed bug in accuracy computation
+- Re-experimented all-edge dropout, convolution block edge dropout, edge gating dropout, convolution output dropout and pre fully-connected layer dropout on RGGCN
+- Some of the test accuracies (averaged of two runs) are reported below:
+
+| Layers   | Dropout                                             | Test Acc.   |
+| -------- | --------------------------------------------------- | ----------- |
+| 4        | all-edge (0.3)                                      | 66.6%       |
+| 4        | all edge dropout (0.3)                              | 65.5%       |
+| 4        | fc dropout (0.3)                                    | 53.9%       |
+| 4        | conv block edge dropout (0.3)                       | 69.5%       |
+| 4        | conv block edge dropout, fc dropout (0.3)           | 63.5%       |
+| 4        | conv output dropout (0.3)                           | 63.5%       |
+| 4        | conv block edge dropout, conv output dropout (0.3)  | 68.2%       |
+| **6**    | **all edge dropout, conv output dropout (0.3)**     | **70.9%**   |
+| 6        | conv block edge dropout, conv output dropout (0.3)  | 69.8%       |
+| 8        | all edge dropout, conv output dropout (0.3)         | 69.2%       |
+
+- Some observations are that all edge dropout outperforms conv block dropout as number of layers increases. (All edge dropout refers to dropping out edges at the start of the feed-forward phase. Conv block dropout refers to dropping out edges in each conv block, with 3 conv blocks for a 6-layer RGGCN.)
+- Without any form of dropout, overfitting occurs very quickly in training.
+- The best combination of dropout currently is by combining all edge dropout with dropout of the output from each graph convolution layer, achieving >70% test accuracy (~10% lower than GCN/GAT).
 
 ### Update #5 (26/11/18)
 - Experimented RGGCN with a color classification dataset (Google-512) where the task is to classify an input image among 11 colors.
