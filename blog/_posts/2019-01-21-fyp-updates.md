@@ -7,6 +7,13 @@ categories: fyp
 
 # FYP Project Updates
 
+## Update #8 (01/03/19)
+- For reference, with GCN: Citeseer: 70.3%, Pudmed: 79.0%
+- Experimental Results:
+- Citeseer - 62.8% Val. Acc.
+- >4% improvement with the use of random edge additions
+- Unable to load Pudmed to memory for now as edge-to-start matrix takes 109k X 19k space, working on sparse matrix implementation/ increase RAM on Cloud VM.
+
 ## Update #7 (15/02/19)
 ### Modifications to RGGCN
 - Removed $$U^{l}H_{i}^{l}$$ term in RGGCN. Feature vector of the $$H_i$$ is added for $$H_{i+1}$$ via self-edges in the second term. This reduces the number of learnable parameters by 25%, and introduces the edge gating property to the self-edge.
